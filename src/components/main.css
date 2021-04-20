@@ -1,0 +1,8 @@
+body{
+    padding: 0;
+    background-color: whitesmoke;
+}
+#image {
+    background-color: white;
+    border-radius: 50%;
+}

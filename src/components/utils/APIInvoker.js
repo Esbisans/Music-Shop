@@ -1,12 +1,11 @@
 const configuration = require('../../configServer')
 const debug = configuration.debugMode
-
 class APIInvoker {
 
     getAPIHeader(){
         return({
             'Content-Type': 'application/json',
-            //authorization: window.localStorage.getItem('token')
+            authorization: window.localStorage.getItem('token')
         })
     }
 
@@ -21,6 +20,15 @@ class APIInvoker {
     invokePUT(url, body, okCallback, failCallback){
         let params = {
             method: 'PUT',
+            headers: this.getAPIHeader(),
+            body: JSON.stringify(body)
+        }
+        this.invoke(url,okCallback,failCallback,params)
+    }
+
+    invokeDELETE(url, body, okCallback, failCallback){
+        let params = {
+            method: 'DELETE',
             headers: this.getAPIHeader(),
             body: JSON.stringify(body)
         }
@@ -65,4 +73,5 @@ class APIInvoker {
             })
     }
 }
+export default new APIInvoker();
 

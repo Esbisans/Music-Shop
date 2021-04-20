@@ -1,6 +1,6 @@
 module.exports = {
     debugMode: false,
     api : {
-        host: 'http://localhost:3000'
+        host: 'https://apimusicshop.herokuapp.com'
     }
 }

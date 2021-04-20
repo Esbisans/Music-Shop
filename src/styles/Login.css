@@ -1,0 +1,25 @@
+body {
+    padding: 70px;
+    background-color: #252F40;
+}
+
+.main-section{
+    margin: 25% auto 0;
+    padding: 0;
+}
+.modal-content{
+    padding: 0 20px;
+    box-shadow: 0 0 6px #848484;
+}
+
+.user-img{
+    margin-top: -50px;
+    margin-bottom: 35px;
+}
+
+.user-img img{
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 0 6px #110252;
+    border-radius: 50%;
+}
