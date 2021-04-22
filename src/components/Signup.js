@@ -170,7 +170,7 @@ export const Signup = ({history}) => {
                             <div className="row">
                                 <div className="col-3">
                                     <button className="btn btn-outline-dark my-4" onClick={() => {
-                                        history.push('/home')
+                                        history.push('/root/home')
                                     }}>
                                         <FaHome />
                                     </button>

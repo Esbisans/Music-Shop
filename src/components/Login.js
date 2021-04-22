@@ -29,7 +29,6 @@ export const Login = ({history}) => {
 
 
         APIInvoker.invokePOST('/users/login',users,data => {
-
                 window.localStorage.setItem('token', data.token)
                 //window.location= '/'
                      const Toast = Swal.mixin({
@@ -48,7 +47,12 @@ export const Login = ({history}) => {
                         icon: 'success',
                         title: data.message
                     })
-                history.push('/home')
+                if (data.data.idRol === 2){
+                    history.push('/home')
+                } else {
+                    history.push('/root')
+                }
+
         }, error => {
                 Swal.fire({
                     title: error.message,

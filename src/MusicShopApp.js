@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import {AppRouter} from "./routers/AppRouter";
+import {AuthContext} from "./auth/AuthContext";
+import {authReducer} from "./auth/authReducer";
+
+const init = () => {
+    return JSON.parse(localStorage.getItem('user')) || { logged: false}
+}
 
 export const MusicShopApp = () => {
+
+    const [user, dispatch] = useReducer(authReducer, {}, init)
+
     return(
-        <AppRouter/>
+        <AuthContext.Provider value={{user, dispatch}}>
+            <AppRouter/>
+        </AuthContext.Provider>
+
     );
 }
 

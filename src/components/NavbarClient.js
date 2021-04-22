@@ -1,16 +1,17 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
-import { FaUserTag, FaBoxes, FaUserPlus } from 'react-icons/fa';
-import { HiOutlineLogout } from 'react-icons/hi';
+import {FaShoppingCart} from "react-icons/fa";
+import {HiOutlineLogout} from "react-icons/hi";
 
-export const Navbar = () => {
+export const NavbarClient = () => {
+
     return(
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-
+        <nav className="navbar navbar-expand-sm navbar-dark bg-danger">
             <div className="container-fluid">
+
                 <Link
                     className="navbar-brand"
-                    to="/root"
+                    to="/main"
                 >
                     <img
                         src={`../assets/shop2.png`}
@@ -21,17 +22,22 @@ export const Navbar = () => {
                     />
                     MusicShop
                 </Link>
+
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"> </span>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarContent" >
 
-                    <div className="navbar-nav">
-                        <NavLink exact activeClassName="active" to="/root/roles" className="nav-item nav-link"><FaUserTag />  Roles</NavLink>
-                        <NavLink exact activeClassName="active" to="/root/productos" className="nav-item nav-link"><FaBoxes/> Productos</NavLink>
-                        <NavLink exact activeClassName="active" to="/signup" className="nav-item nav-link"><FaUserPlus/> Sign-up</NavLink>
+                    <form className="d-flex flex-fill mx-5">
+                        <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
+                            <button className="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+
+                    <div className="navbar-nav d-flex">
+                        <NavLink exact activeClassName="active" to="/main/cart" className="nav-item nav-link"><FaShoppingCart />  Carrito</NavLink>
                     </div>
+
                     <div className="d-flex ms-auto text-end">
                         <div className="navbar-nav ">
                             <NavLink exact activeClassName="active" to="/login" className="nav-item nav-link">Logout <HiOutlineLogout /></NavLink>
@@ -39,9 +45,8 @@ export const Navbar = () => {
                     </div>
 
                 </div>
-            </div>
 
+            </div>
         </nav>
     );
-
 }

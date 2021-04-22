@@ -5,18 +5,21 @@ import {Productos} from "../components/Productos";
 import {Home} from "../components/Home";
 import {Route, Switch, Redirect} from "react-router-dom";
 import '../components/main.css'
+import {Main} from "../components/Main";
+import {Cart} from "../components/Cart";
+import {NavbarClient} from "../components/NavbarClient";
 
-export const DashboardRoutes = () => {
+export const UserRoutes = () => {
     return(
         <>
-            <Navbar />
+            <NavbarClient/>
             <div className="container sm-3">
                 <Switch>
-                    <Route exact path="/root/home" component={Home}/>
-                    <Route exact path="/root/roles" component={Roles}/>
-                    <Route exact path="/root/productos" component={Productos}/>
 
-                    <Redirect to="/root/home"/>
+                    <Route exact path="/main/home" component={Main}/>
+                    <Route exact path="/main/cart" component={Cart}/>
+
+                    <Redirect to="/main/home"/>
                 </Switch>
 
             </div>
