@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import APIInvoker from "./utils/APIInvoker";
 import Swal from "sweetalert2";
+import { FaMinus, FaPlus } from 'react-icons/fa';
+import {Sales} from "./Sales";
 
-export const Main = () => {
+export const Main = ({history}) => {
 
     const [productos, setProductos] = useState([]);
 
@@ -23,6 +25,15 @@ export const Main = () => {
         })
     }
 
+    const handleSales = (product) => {
+        history.push(
+            {
+                pathname: '/main/sales',
+                state: product
+            }
+        );
+    }
+
     return (
         <>
             <div className="container">
@@ -39,13 +50,15 @@ export const Main = () => {
                                             <p className="card-text">{product.descripcion}</p>
                                         </div>
                                         <div className="card-footer">
-                                            <button
-                                                className="btn btn btn-outline-warning me-3 my-sm-2 "
-                                                data-bs-toggle="modal"
-                                                onClick={handleListProduct}
-                                            >
-                                                Comprar
-                                            </button>
+
+
+                                                <button
+                                                    className="btn btn btn-outline-warning me-3 my-sm-2 "
+                                                    onClick={() => handleSales(product)}
+                                                >
+                                                    Comprar
+                                                </button>
+
                                         </div>
                                     </div>
                                 </div>
