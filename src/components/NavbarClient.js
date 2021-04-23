@@ -80,10 +80,6 @@ export const NavbarClient = ({props}) => {
                             <button className="btn btn-outline-light" type="submit" onClick={search} >Search</button>
                     </form>
 
-                    <div className="navbar-nav d-flex">
-                        <NavLink exact activeClassName="active" to="/main/cart" className="nav-item nav-link"><FaShoppingCart />  Carrito</NavLink>
-                    </div>
-
                     <div className="d-flex ms-auto text-end">
                         <div className="navbar-nav ">
                             <NavLink exact activeClassName="active" to="/login" className="nav-item nav-link">Logout <HiOutlineLogout /></NavLink>

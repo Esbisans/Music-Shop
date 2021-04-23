@@ -1,6 +1,6 @@
 module.exports = {
     debugMode: false,
     api : {
-        host: 'http://localhost:8000'
+        host: 'http://184.73.143.11:8000'
     }
 }
