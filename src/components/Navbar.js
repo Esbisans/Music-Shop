@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
-import { FaUserTag, FaBoxes, FaUserPlus } from 'react-icons/fa';
+import { FaUserTag, FaBoxes, FaUserPlus, FaCashRegister } from 'react-icons/fa';
 import { HiOutlineLogout } from 'react-icons/hi';
 
 export const Navbar = () => {
@@ -30,6 +30,7 @@ export const Navbar = () => {
                     <div className="navbar-nav">
                         <NavLink exact activeClassName="active" to="/root/roles" className="nav-item nav-link"><FaUserTag />  Roles</NavLink>
                         <NavLink exact activeClassName="active" to="/root/productos" className="nav-item nav-link"><FaBoxes/> Productos</NavLink>
+                        <NavLink exact activeClassName="active" to="/root/registry" className="nav-item nav-link"> <FaCashRegister/> Registros</NavLink>
                         <NavLink exact activeClassName="active" to="/signup" className="nav-item nav-link"><FaUserPlus/> Sign-up</NavLink>
                     </div>
                     <div className="d-flex ms-auto text-end">

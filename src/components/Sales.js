@@ -1,23 +1,103 @@
 import React, { useState, useEffect } from 'react';
 import {FaMinus, FaPlus} from "react-icons/fa";
 import {useForm} from "../hooks/useForm";
+import APIInvoker from "./utils/APIInvoker";
+import Swal from "sweetalert2";
 
-export const Sales = ({location}) => {
+export const Sales = ({history, location}) => {
     const product = location.state
 
     const [formValues, handleInputChange] = useForm({
         cantidad: '1',
-        direccion: ''
+        direccion: '',
+        telefono: '',
+        postal: ''
     })
 
-    const {cantidad, direccion} = formValues
+    const {cantidad, direccion, telefono, postal} = formValues
+
+    const handleSale = () => {
+
+        let venta = {
+            idProducto: product.idProducto,
+            cantidadVender: cantidad
+        }
+
+        let address = {
+            direccion: direccion,
+            numeroContacto: telefono,
+            codigoPostal: postal
+        }
+
+        let registroVentas = {
+            total: cantidad * product.precio
+        }
+
+        APIInvoker.invokePUT('/sales/sale', venta, data => {
+
+            Swal.fire({
+                    title: data.message,
+                    icon: "success",
+                    confirmButtonText: "Aceptar"
+                }
+            );
+
+
+            history.replace('main/home')
+        }, error => {
+            Swal.fire({
+                    title: error.message,
+                    icon: "error",
+                    confirmButtonText: "Aceptar"
+                }
+            );
+        })
+
+        APIInvoker.invokePOST('/sales/address', address, data => {
+            /*
+            Swal.fire({
+                    title: data.message,
+                    icon: "success",
+                    confirmButtonText: "Aceptar"
+                }
+            );
+
+             */
+        }, error => {
+            Swal.fire({
+                    title: error.message,
+                    icon: "error",
+                    confirmButtonText: "Aceptar"
+                }
+            );
+        })
+
+        APIInvoker.invokePOST('/registry/registrySales', registroVentas, data => {
+            /*
+            Swal.fire({
+                    title: data.message,
+                    icon: "success",
+                    confirmButtonText: "Aceptar"
+                }
+            );
+
+             */
+        }, error => {
+            Swal.fire({
+                    title: error.message,
+                    icon: "error",
+                    confirmButtonText: "Aceptar"
+                }
+            );
+        })
+    }
 
     return (
         <div className="container mt-4">
             <div className="card text-white bg-dark">
                 <div className="card-header">
                     <h1>
-                        {location.state.nombre}
+                        {product.nombre}
                     </h1>
                 </div>
                 <div className="card-body">
@@ -39,6 +119,7 @@ export const Sales = ({location}) => {
                                 <input
                                     className="form-control mx-4"
                                     type="number"
+                                    min="1"
                                     name="cantidad"
                                     value={cantidad}
                                     onChange={handleInputChange}
@@ -74,7 +155,43 @@ export const Sales = ({location}) => {
                         </form>
                     </div>
 
-                    <button className="btn btn-light my-3">
+                    <div className="row my-3">
+                        <form className="d-flex">
+                            <h3>
+                                Telefono
+                            </h3>
+
+                            <input
+                                className="form-control mx-4"
+                                type="number"
+                                min="0"
+                                name="telefono"
+                                value={telefono}
+                                onChange={handleInputChange}
+                            />
+
+                        </form>
+                    </div>
+
+                    <div className="row my-3">
+                        <form className="d-flex">
+                            <h3>
+                                Postal
+                            </h3>
+
+                            <input
+                                className="form-control mx-4"
+                                type="number"
+                                min="0"
+                                name="postal"
+                                value={postal}
+                                onChange={handleInputChange}
+                            />
+
+                        </form>
+                    </div>
+
+                    <button className="btn btn-light my-3" type="submit" onClick={handleSale}>
                         Comprar
                     </button>
 

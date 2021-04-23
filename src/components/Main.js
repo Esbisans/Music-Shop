@@ -4,17 +4,20 @@ import Swal from "sweetalert2";
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import {Sales} from "./Sales";
 
-export const Main = ({history}) => {
+export const Main = ({history, location}) => {
 
     const [productos, setProductos] = useState([]);
 
     useEffect(() => {
-        handleListProduct();
-    }, []);
+            if (location.state === undefined)
+            handleListProduct();
+            else
+                handleSearch()
+    }, [location]);
 
     const handleListProduct = () => {
         APIInvoker.invokeGET('/products/showproduct', data => {
-            setProductos(data.data)
+                setProductos(data.data)
         }, error => {
             Swal.fire({
                     title: error.message,
@@ -23,6 +26,10 @@ export const Main = ({history}) => {
                 }
             );
         })
+    }
+
+    const handleSearch = () => {
+        setProductos(location.state)
     }
 
     const handleSales = (product) => {

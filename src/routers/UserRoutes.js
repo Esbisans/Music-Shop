@@ -6,10 +6,10 @@ import {Cart} from "../components/Cart";
 import {NavbarClient} from "../components/NavbarClient";
 import {Sales} from "../components/Sales";
 
-export const UserRoutes = () => {
+export const UserRoutes = (props) => {
     return(
         <>
-            <NavbarClient/>
+            <NavbarClient props={props}/>
             <div className="container sm-3">
                 <Switch>
 
